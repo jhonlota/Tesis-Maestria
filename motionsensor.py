@@ -1,8 +1,9 @@
+import mysql.connector
+import sys
 from gpiozero import MotionSensor, LED
 from time import sleep
-import mysql.connector
 
-pir = MotionSensor(4)
+pir = MotionSensor(14)
 led2 = LED(2)
 led3 = LED(3)
 led4 = LED(4)
@@ -13,8 +14,7 @@ mydb = mysql.connector.connect(
     passwd="2gI(3T+)N}Pr",
     database="comerc10_evaluateeneldeporte"
 )
-
-mycursor = mydb.cursor()
+mydb.close()
 
 def funcion1():
     led2.off()
@@ -25,20 +25,40 @@ def funcion2():
     led3.off()
 
 def insert():
-    sql = "INSERT INTO sensor (posicion) VALUES (%s)"
-    val = ("A")
-    mycursor.execute(sql, val)
-    mydb.commit()
-    led4.on()
-    sleep(5)
-    led4.off()
-
-while True:
-    led2.on()
-    pir.wait_for_motion()
-    pir.when_motion = funcion1()
+    try: 
+        mydb.reconnect()
+        mycursor = mydb.cursor()
+        sql = "INSERT INTO sensor ( posicion, idpractica, idjugador )  VALUES ( 'A', (SELECT idpractica FROM estado WHERE estado = 1), (SELECT idjugador FROM estado WHERE estado = 1) )"
+        mycursor.execute(sql)
+        mydb.commit()
         
-    print("Movimiento detectado")
-    pir.wait_for_no_motion()
-    insert()
-    pir.when_no_motion = funcion2()
+        led4.on()
+        sleep(4)
+        led4.off()
+        mycursor.close()
+        mydb.close()
+    except mysql.connector.Error as e:
+        mycursor.close()
+        mydb.close()
+        mydb.reconnect()
+        
+        sleep(4)
+        print(e)
+        return None
+    
+while True:
+    try:
+        led2.on()
+        pir.wait_for_motion()
+        pir.when_motion = funcion1()
+            
+        print("Movimiento detectado")
+        pir.wait_for_no_motion()
+        insert()
+        pir.when_no_motion = funcion2()
+    except (KeyboardInterrupt, SystemExit):
+        led2.off()
+        led3.off()
+        led4.off()
+        print("Salida")
+        sys.exit()
