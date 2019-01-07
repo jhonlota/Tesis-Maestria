@@ -10,6 +10,11 @@ pip install mysql-connector-python
 pip install mysql-connector-python-rf
 pip install mysql-connector
 
+4. crontab -e
+5. @reboot sleep 60; /usr/bin/python3 /home/pi/Documents/Tesis-Maestria/motionsens@reboot sleep 60; /usr/bin/python3 /home/pi/Documents/Tesis-Maestria/motionsensor.py  > /home/pi/Documents/log.txt # JOB_ID_1
+
+
+
 
 
 
