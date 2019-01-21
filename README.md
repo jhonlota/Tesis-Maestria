@@ -14,9 +14,9 @@ pip install mysql-connector
 5. @reboot sleep 60; /usr/bin/python3 /home/pi/Documents/Tesis-Maestria/motionsensor.py  > /home/pi/Documents/log.txt # JOB_ID_1
 
 6. Actualizo el git
-> git add *
-> git commit -m "comentario"
-> git push -u origin master
+- git add *
+- git commit -m "comentario"
+- git push -u origin master
 
 
 
