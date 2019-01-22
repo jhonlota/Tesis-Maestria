@@ -7,7 +7,7 @@ pir = MotionSensor(14)
 led2 = LED(2)
 led3 = LED(3)
 led4 = LED(4)
-sensor = "A"
+sensor = "C"
 
 mydb = mysql.connector.connect(
     host="www.comercializadoralanacional.com.co",
@@ -29,12 +29,12 @@ def insert():
     try: 
         mydb.reconnect()
         mycursor = mydb.cursor()
-        sql = "INSERT INTO sensor ( posicion, idprueba, idpractica, idjugador ) " +
-        "VALUES " +
-        "( '" + sensor + "', " +
-        "(SELECT idprueba FROM estado WHERE estado = 1), " +
-        "(SELECT idpractica FROM estado WHERE estado = 1), " +
-        "(SELECT idjugador FROM estado WHERE estado = 1) )"
+        sql = "INSERT INTO sensor ( posicion, idprueba, idpractica, idjugador ) "
+        sql += "VALUES "
+        sql += "( '" + sensor + "', "
+        sql += "(SELECT idprueba FROM estado WHERE estado = 1), " 
+        sql += "(SELECT idpractica FROM estado WHERE estado = 1), "
+        sql += "(SELECT idjugador FROM estado WHERE estado = 1) )"
         mycursor.execute(sql)
         mydb.commit()
         
