@@ -29,12 +29,17 @@ def insert():
     try: 
         mydb.reconnect()
         mycursor = mydb.cursor()
-        sql = "INSERT INTO sensor ( posicion, idpractica, idjugador )  VALUES ( '" + sensor + "', (SELECT idpractica FROM estado WHERE estado = 1), (SELECT idjugador FROM estado WHERE estado = 1) )"
+        sql = "INSERT INTO sensor ( posicion, idprueba, idpractica, idjugador ) " +
+        "VALUES " +
+        "( '" + sensor + "', " +
+        "(SELECT idprueba FROM estado WHERE estado = 1), " +
+        "(SELECT idpractica FROM estado WHERE estado = 1), " +
+        "(SELECT idjugador FROM estado WHERE estado = 1) )"
         mycursor.execute(sql)
         mydb.commit()
         
         led4.on()
-        sleep(4)
+        sleep(3)
         led4.off()
         mycursor.close()
         mydb.close()
@@ -43,7 +48,7 @@ def insert():
         mydb.close()
         mydb.reconnect()
         
-        sleep(4)
+        sleep(3)
         print(e)
         return None
     
