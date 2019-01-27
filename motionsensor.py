@@ -1,5 +1,6 @@
 import mysql.connector
 import sys
+import time
 from gpiozero import MotionSensor, LED
 from time import sleep
 
@@ -7,7 +8,7 @@ pir = MotionSensor(14)
 led2 = LED(2)
 led3 = LED(3)
 led4 = LED(4)
-sensor = "C"
+sensor = "A"
 
 mydb = mysql.connector.connect(
     host="www.comercializadoralanacional.com.co",
@@ -29,12 +30,14 @@ def insert():
     try: 
         mydb.reconnect()
         mycursor = mydb.cursor()
-        sql = "INSERT INTO sensor ( posicion, idprueba, idpractica, idjugador ) "
-        sql += "VALUES "
-        sql += "( '" + sensor + "', "
+        sql = "INSERT INTO sensor ( fechahora, posicion, idprueba, idpractica, idjugador ) "
+        sql += "VALUES ("
+        sql += "'" + time.strftime("%y-%m-%d %H:%M:%S") + "', "
+        sql += "'" + sensor + "', "
         sql += "(SELECT idprueba FROM estado WHERE estado = 1), " 
         sql += "(SELECT idpractica FROM estado WHERE estado = 1), "
-        sql += "(SELECT idjugador FROM estado WHERE estado = 1) )"
+        sql += "(SELECT idjugador FROM estado WHERE estado = 1)"
+        sql += ")"
         mycursor.execute(sql)
         mydb.commit()
         
