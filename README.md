@@ -32,6 +32,9 @@ pip install mysql-connector
 - sudo /etc/init.d/ntp restart
 - ntpq -pn
 
+6. Cambiar el nombre del equipo para la RED
+- sudo nano /etc/hosts
+
 
 
 
