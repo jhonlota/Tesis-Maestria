@@ -35,6 +35,30 @@ pip install mysql-connector
 6. Cambiar el nombre del equipo para la RED
 - sudo nano /etc/hosts
 
+7. Verificar las redes Wifi
+- sudo nano /etc/wpa_supplicant//wpa_supplicant.conf 
+
+  GNU nano 2.7.4 Fichero: /etc/wpa_supplicant//wpa_supplicant.conf              
+
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=CO
+
+network={
+        ssid="AndroidAPCACA"
+        psk="nwyx5998"
+        key_mgmt=WPA-PSK
+}
+
+network={
+        ssid="ELIANA"
+        psk="Eliana#@123_Az"
+        key_mgmt=WPA-PSK
+}
+
+8. Deshabilitar wlan0
+@reboot sudo ifdown wlan0
+
 
 
 
