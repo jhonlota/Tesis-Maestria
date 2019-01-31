@@ -40,24 +40,24 @@ pip install mysql-connector
 
   GNU nano 2.7.4 Fichero: /etc/wpa_supplicant//wpa_supplicant.conf              
 
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=CO
+  ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+  update_config=1
+  country=CO
 
-network={
+  network={
         ssid="AndroidAPCACA"
         psk="nwyx5998"
         key_mgmt=WPA-PSK
 }
 
-network={
+  network={
         ssid="ELIANA"
         psk="Eliana#@123_Az"
         key_mgmt=WPA-PSK
 }
 
 8. Deshabilitar wlan0
-@reboot sudo ifdown wlan0
+- @reboot sudo ifdown wlan0
 
 
 
