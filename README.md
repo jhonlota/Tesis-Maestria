@@ -1,4 +1,4 @@
-#Procesos Raspberry Pi Zero W
+# Procesos Raspberry Pi Zero W
 
 1. Eliminar la carpeta actual del codigo
 ```
@@ -20,14 +20,11 @@ sudo apt-get update
 sudo apt-get install python3-mysql.connector
 ```
 **Otros sin resultado**
->
-```
-apt-get install python-mysql.connector
-apt-get -f install python-mysql.connector
-pip install mysql-connector-python
-pip install mysql-connector-python-rf
-pip install mysql-connector
-```
+> apt-get install python-mysql.connector
+> apt-get -f install python-mysql.connector
+> pip install mysql-connector-python
+> pip install mysql-connector-python-rf
+> pip install mysql-connector
 5. Tarea programada al iniciar Raspberry
 ```
 crontab -e
@@ -41,7 +38,7 @@ sudo systemctl stop systemd-timesyncd.service
 sudo systemctl disable systemd-timesyncd.service
 sudo /etc/init.d/ntp stop
 sudo /etc/init.d/ntp start
-~~sudo nano /etc/ntp.conf~~
+*sudo nano /etc/ntp.conf*
 sudo /etc/init.d/ntp restart
 ntpq -pn
 ```
@@ -54,23 +51,7 @@ sudo nano /etc/hosts
 ```
 sudo nano /etc/wpa_supplicant/wpa_supplicant.conf 
 ```
-> GNU nano 2.7.4 Fichero: /etc/wpa_supplicant//wpa_supplicant.conf              
-> ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-> update_config=1
-> country=CO
-
-> ```network={
-        ssid="AndroidAPCACA"
-        psk="nwyx5998"
-        key_mgmt=WPA-PSK
-}
-```
-> ```network={
-        ssid="ELIANA"
-        psk="Eliana#@123_Az"
-        key_mgmt=WPA-PSK
-}```
-
+** Solo dejar las validas **
 
 
 
